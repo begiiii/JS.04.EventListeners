@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Tooltips</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 1px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            top:50px;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+        }
+       
+         /* .tooltip-text {
+            bottom: 100%;
+            left: 0
+        } */
+    </style>
+</head>
+<body>
+    <div class="tooltip">
+        <button>Button 1</button>
+        <span class="tooltip-text">Tooltip 1</span>
+    </div>
+
+    <div class="tooltip ">
+        <button>Button 2</button>
+        <span class="tooltip-text">Tooltip 2</span>
+    </div>
+
+    <div class="tooltip">
+        <button>Button 3</button>
+        <span class="tooltip-text">Tooltip 3</span>
+    </div>
+
+    <div class="tooltip ">
+        <button>Button 4</button>
+        <span class="tooltip-text">Tooltip 4</span>
+    </div>
+
+
+    <script>
+        let tooltip = document.querySelectorAll('.tooltip');
+        let tooltipText = document.querySelectorAll('.tooltip-text');
+
+        for (let i = 0; i < tooltip.length; i++) {
+            tooltip[i].addEventListener('mouseover', function(){
+                
+                tooltipText[i].style.visibility = 'visible';
+                let tooltipBounds = tooltipText[i].getBoundingClientRect();
+                console.log(tooltipBounds.top + "  " + tooltipBounds.height)
+
+                 if(tooltipBounds.top - tooltipBounds.height > 0){
+                    tooltipText[i].style.bottom = '100%';
+                    tooltipText[i].style.top = 'auto';
+                    tooltipText[i].style.left = 0;
+                 }else{
+                console.log(tooltipBounds.top)
+
+                     tooltipText[i].style.top = '100%';
+                     tooltipText[i].style.bottom = 'auto';
+                     tooltipText[i].style.left = 0;
+                 }
+
+            });
+
+
+            tooltip[i].addEventListener('mouseout', function(){
+                tooltipText[i].style.visibility = 'hidden';
+            });
+        }
+    </script>
+</body>
+</html>

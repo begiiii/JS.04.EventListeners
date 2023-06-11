@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #field {
+      width: 100vw;
+      height: 100vh;
+      background-color: green;
+      position: relative;
+    }
+
+    #ball {
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: top 0.5s, left 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div id="field">
+    <div id="ball"></div>
+  </div>
+
+  <script>
+    let ball = document.getElementById("ball"); 
+      let field = document.getElementById("field"); 
+
+      field.addEventListener('click', function(){
+        let fieldRect = field.getBoundingClientRect(); 
+      let ballRect = ball.getBoundingClientRect(); 
+
+
+      console.log(field.getBoundingClientRect())
+
+      let fieldWidth = fieldRect.width; 
+      let fieldHeight = fieldRect.height; 
+
+
+      let clickX = event.clientX - fieldRect.left; 
+      
+      let clickY = event.clientY - fieldRect.top; 
+      let ballX = Math.max(Math.min(clickX, fieldWidth - ballRect.width / 2), ballRect.width / 2); 
+      let ballY = Math.max(Math.min(clickY, fieldHeight - ballRect.height / 2), ballRect.height / 2); 
+      ball.style.top = ballY + "px"; 
+      ball.style.left = ballX + "px"; 
+      })
+
+  
+</script>
+
+</body>
+</html>

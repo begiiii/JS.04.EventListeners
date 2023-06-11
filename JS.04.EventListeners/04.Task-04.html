@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 200px;
+            height: 80px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .color{
+            width: 50px;
+            height: 50px;
+            background-color: darkgrey;
+            border-radius: 50%;
+        }
+    </style>
+</head>         
+<body>
+    
+    <div id="container">
+        <div class="color" id="green"></div>
+        <div class="color" id="orange"></div>
+        <div class="color" id="red"></div>
+    </div>
+    <input type="button" id="nextBtn" value="Next">
+
+    <script>
+
+let d= document;
+let color = d.querySelectorAll(".color");
+let nextBtn = d.getElementById('nextBtn')
+
+color[0].style.backgroundColor = color[0].id;
+
+nextBtn.addEventListener('click', function(){
+    for(let i = 0; i < color.length; i++){
+        if(color[i].style.backgroundColor !== 'darkgrey'){
+            color[i].style.backgroundColor = 'darkgrey';
+            color[i+1] ? color[i+1].style.backgroundColor = color[i+1].id : color[0].style.backgroundColor = color[0].id ;
+            break;
+        }
+    }
+})
+
+    </script>
+
+</body>
+</html>

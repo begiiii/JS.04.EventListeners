@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  <style>
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="openBtn">Открыть</button>
+
+  <div id="myModal" class="modal">
+    <div class="content">
+      <p>Это модальное окно с текстом.</p>
+      <button id="closeBtn">Закрыть</button>
+    </div>
+  </div>
+
+  <script>
+    // Получаем ссылки на кнопки и модальное окно
+    var openBtn = document.getElementById("openBtn");
+    var closeBtn = document.getElementById("closeBtn");
+    var modal = document.getElementById("myModal");
+
+    openBtn.addEventListener('click',function() {
+      modal.style.display = "block";
+    })
+
+    closeBtn.addEventListener('click',function() {
+      modal.style.display = "none";
+    })
+
+    // При клике вне модального окна (на затемненную область) скрываем его
+    window.addEventListener('click',function(event) {
+        console.log(event.target)
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    })
+  </script>
+
+</body>
+</html>
